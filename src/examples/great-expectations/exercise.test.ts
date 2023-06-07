@@ -12,19 +12,16 @@ import { KanbanBoard } from '$lib/kanban-board';
  * toThrowError: https://vitest.dev/api/expect.html#tothrowerror
  */
 
-it(
-  'should pass if the two numbers would add up correctly in a language other than JavaScript',
-  () => {
-    expect(0.2 + 0.1).toBeCloseTo(0.3);
-  },
-);
+it('should pass if the two numbers would add up correctly in a language other than JavaScript', () => {
+  expect(0.2 + 0.1).toBeCloseTo(0.3);
+});
 
 describe('createPerson', () => {
   it('should create an instance of a person', () => {
     const person = createPerson('Ada Lovelace');
     expect.hasAssertions();
     // Verify that person is an instance of a Person.
-    expect(person).toBeInstanceOf(Person)
+    expect(person).toBeInstanceOf(Person);
   });
 });
 
@@ -33,40 +30,37 @@ describe('Kanban Board', () => {
     const board = new KanbanBoard('Things to Do');
     expect.hasAssertions();
     // Verify that board.statuses contains "Backlog".
-    expect(board.statuses).toContain('Backlog')
+    expect(board.statuses).toContain('Backlog');
   });
 
   it('should *not* include "Bogus" in board.statuses', () => {
     const board = new KanbanBoard('Things to Do');
     expect.hasAssertions();
     // Verify that board.statuses does not contain "Bogus".
-    expect(board.statuses).not.toContain('Bogus')
+    expect(board.statuses).not.toContain('Bogus');
   });
 
-  it(
-    'should include an added status in board.statuses using #addStatus',
-    () => {
-      const board = new KanbanBoard('Things to Do');
-      expect.hasAssertions();
-      // Use board.addStatus to add a status.
-      board.addStatus('Verifying')
-      // Verify that the new status is—in fact—now in board.statuses.
-      expect(board.statuses).toContain('Verifying')
-    },
-  );
+  it('should include an added status in board.statuses using #addStatus', () => {
+    const board = new KanbanBoard('Things to Do');
+    expect.hasAssertions();
+    // Use board.addStatus to add a status.
+    board.addStatus('Verifying');
+    // Verify that the new status is—in fact—now in board.statuses.
+    expect(board.statuses).toContain('Verifying');
+  });
 
   it('should remove a status using #removeStatus', async () => {
     const board = new KanbanBoard('Things to Do');
-    const status = 'Backlog'
+    const status = 'Backlog';
     expect.hasAssertions();
     // Use board.removeStatus to remove a status.
-    expect(board.statuses).toContain(status)
-    const returnValue = await board.removeStatus(status)
+    expect(board.statuses).toContain(status);
+    const returnValue = await board.removeStatus(status);
     // You can be clever or you can just assume "Backlog" is in board.statuses
     // by default.
-    expect(board.statuses).not.toContain(status)
+    expect(board.statuses).not.toContain(status);
     // Verify that the status is no longer in in board.statuses.
-    expect(returnValue).toBe(4)
+    expect(returnValue).toBe(4);
     // can use expect(returnValue).resolves.toBe(4) with no await
   });
 });
@@ -76,21 +70,21 @@ describe('Person', () => {
     const person = new Person('Madonna');
     expect.hasAssertions();
     // Verify that person.firstName is correct.
-    expect(person.firstName).toBe('Madonna')
+    expect(person.firstName).toBe('Madonna');
   });
 
   it('will create a person with a first and last name', () => {
     const person = new Person('Madonna Cicone');
     expect.hasAssertions();
     // Verify that person.lastName is correct.
-    expect(person.lastName).toBe('Cicone')
+    expect(person.lastName).toBe('Cicone');
   });
 
   it('will create a person with a first, middle, and last name', () => {
     const person = new Person('Madonna Louise Cicone');
     expect.hasAssertions();
     // Verify that person.middleName is correct.
-    expect(person.middleName).toBe('Louise')
+    expect(person.middleName).toBe('Louise');
   });
 
   it('will throw if you provide an empty string', () => {
@@ -102,24 +96,21 @@ describe('Person', () => {
 
     // Verify that function above throws.
     // .toThrowError() can pass in part of the expected string
-    expect(fn).toThrowError('empty string')
+    expect(fn).toThrowError('empty string');
   });
 
-  it(
-    'will throw a specific error message if you provide an empty string',
-    () => {
-      const errorMessage = 'fullName cannot be an empty string.';
+  it('will throw a specific error message if you provide an empty string', () => {
+    const errorMessage = 'fullName cannot be an empty string.';
 
-      const fn = () => {
-        new Person('');
-      };
+    const fn = () => {
+      new Person('');
+    };
 
-      expect.hasAssertions();
+    expect.hasAssertions();
 
-      // Verify that function above throws the error message above.
-      expect(fn).toThrowError(/^fullName cannot be an empty string.$/)
-    },
-  );
+    // Verify that function above throws the error message above.
+    expect(fn).toThrowError(/^fullName cannot be an empty string.$/);
+  });
 
   it('will add a friend', () => {
     const john = new Person('John Lennon');
@@ -130,7 +121,7 @@ describe('Person', () => {
     expect.hasAssertions();
 
     // Verify that john.friends contains paul.
-    expect(john.friends).toContain(paul)
+    expect(john.friends).toContain(paul);
   });
 
   it('will mutually add a friend', () => {
@@ -142,7 +133,7 @@ describe('Person', () => {
     expect.hasAssertions();
 
     // Verify that paul.friends contains john.
-    expect(paul.friends).toContain(john)
+    expect(paul.friends).toContain(john);
   });
 
   it('will remove a friend', () => {
@@ -155,7 +146,7 @@ describe('Person', () => {
     expect.hasAssertions();
 
     // Verify that john.friends does not inclide paul.
-    expect(john.friends).not.toContain(paul)
+    expect(john.friends).not.toContain(paul);
   });
 
   it('will mutually remove friends', () => {
@@ -168,7 +159,7 @@ describe('Person', () => {
     expect.hasAssertions();
 
     // Verify that paul.friends does not include john.
-    expect(paul.friends).not.toContain(john)
+    expect(paul.friends).not.toContain(john);
   });
 });
 
